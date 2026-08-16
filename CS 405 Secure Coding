@@ -52,3 +52,5 @@ The main technical challenge was designing a benchmark that would actually finis
 I also had to replace a Windows-specific function call, `localtime_s`, with a portable alternative so the program would compile and run outside of Visual Studio — a useful reminder that platform-specific APIs can quietly limit where code can be tested and verified.
 
 Overall, this milestone reinforced that a data structure choice is only as convincing as the evidence behind it. Producing the actual timing numbers, rather than simply asserting that a hash map would be faster, made the enhancement feel like a real engineering decision rather than a textbook exercise.
+
+- [Secure Coding Encryption Project (CS 405)](https://github.com/Ssjbankai12/CS_450_Secure_Coding)
