@@ -1,0 +1,45 @@
+# Kevin Korb — Computer Science ePortfolio
+
+*Southern New Hampshire University — CS 499: Computer Science Capstone*
+
+---
+
+## Professional Self-Assessment
+
+Completing the Computer Science program at Southern New Hampshire University, with a concentration in cybersecurity, has been a process of turning a set of separate course assignments into a coherent professional identity. Early in the program my work lived inside individual modules: a checksum script here, a UI mockup there, a lab exercise submitted and mostly forgotten. Building this ePortfolio, and returning to artifacts from Full-Stack Development, Secure Coding, and Client-Server Development with an enhancement mindset rather than a submission mindset, forced me to look at my own work the way a hiring manager or a senior engineer would: What does this code assume? Where does it break? What would I be embarrassed to explain in an interview? That shift is the biggest thing the capstone gave me, and it has shaped a clear professional goal: I want to work at the intersection of software development and security, building systems that are not just functional but defensible.
+
+### Collaborating in a Team Environment
+
+Much of my program was completed independently, but the habits of collaborative development still had to be built deliberately rather than absorbed from a team around me. The code review process required for this capstone is the clearest example: producing a walkthrough aimed at a peer or manager audience meant I had to articulate design decisions out loud, in a way that would hold up to someone else's questions, rather than just leaving them implicit in the code. Secure Coding pushed the same habit further by requiring a CppCheck static analysis pass on my own encryption project before I could call it finished, which is effectively a structured, tool-assisted version of a peer code review: a second, less forgiving reviewer pointing out what I would have missed on my own. Outside the classroom, I do this daily as a PC technician, where diagnosing an issue often means coordinating with other technicians on a shared ticket, agreeing on a root cause before applying a fix, and documenting that fix clearly enough that whoever picks up the ticket next does not have to start over. Building the enhancement plan for this capstone's three artifacts required the same discipline: treating my own six-months-ago code as if it belonged to a teammate I needed to bring up to speed.
+
+### Communicating with Stakeholders
+
+Stakeholder communication is a skill I use before I ever open an IDE. As a PC technician, my primary audience is not other engineers but end users who do not want an explanation of the root cause — they want to know when they can get back to work and what they can do to avoid the problem again. That habit of translating technical detail into audience-appropriate language shows up throughout my coursework. In Technology and Society, my analysis of the Colonial Pipeline ransomware attack had to synthesize technical reporting from CISA and the FBI alongside academic and policy sources into an argument accessible to a non-technical, socially-focused audience, rather than a purely technical incident report. In UI/UX-focused work in Software Testing and Quality Assurance, I applied Apple's Human Interface Guidelines and Google's Material Design principles specifically because good interface design is itself a form of stakeholder communication: it tells a user what a system expects of them without requiring a manual. This self-assessment and the narratives that follow continue that same thread, written for an audience of employers who need to understand not just what I built, but why the decisions behind it were sound.
+
+### Data Structures and Algorithms
+
+My Secure Coding encryption and decryption project is the clearest demonstration of algorithmic thinking in my portfolio, largely because the original version failed in a way that only a closer look at its data structures could fix. The initial implementation relied on a single hardcoded key with no way to manage more than one, which is a design limitation as much as a security one. Enhancing it for this capstone meant building a proper key management layer and then asking a genuinely algorithmic question: what is the right data structure for looking up a key by name? I implemented and benchmarked two answers side by side, a `LinearKeyStore` backed by a vector with O(n) scan-based lookup, and a `HashKeyStore` backed by an unordered_map with O(1) average-case lookup, and wired the hash-based version into the working program after the benchmark confirmed the expected trade-off at scale. That exercise mattered more than any textbook definition of Big-O notation could have, because it forced me to justify a design choice with measured evidence rather than intuition.
+
+### Software Engineering and Databases
+
+My enhancements to the Travlr Getaways application and the rescue-dog dashboard show two different but complementary sides of software engineering. Travlr Getaways is a full MEAN-stack application, and the software engineering enhancement built on foundational work with Express.js, MVC architecture, and Handlebars templating to expand the application's structure and functionality in a way that reflects industry-standard practices rather than a single-course exercise. The rescue-dog dashboard, originally built in Client-Server Development on MongoDB, Python, and the Dash framework, became the vehicle for my databases enhancement. There, the work was less about adding new features and more about making the data layer itself trustworthy: adding compound indexing across breed, outcome, and age fields to make common queries efficient, building an aggregation pipeline to surface breed-level adoption statistics that were previously invisible in the raw data, and applying schema validation so the database itself, not just the application code, enforces data integrity. Together, these two artifacts demonstrate that I can work confidently across the full stack, from the interface a user touches down to the database enforcing the rules underneath it.
+
+### Security
+
+Security is the thread that runs underneath every artifact in this portfolio, which is a direct reflection of my concentration. Reverse Software Engineering gave me practice thinking like an adversary: converting compiled binaries to assembly and then to C++, and, in one project, taking a client-management application for a fictional investment firm and deliberately hunting for and remediating vulnerabilities in its login and permission-checking logic. Secure Coding reinforced the same mindset from the defender's side, culminating in a full DevSecOps security policy document covering coding standards, risk assessment, and encryption policy, alongside hands-on work with SHA-256 checksum verification and generating self-signed certificates. A course on neural networks and personalization algorithms pushed that thinking into newer territory, requiring me to propose privacy-preserving adaptations such as federated learning and differential privacy in light of GDPR compliance. The `KeyStore` enhancement in my algorithms artifact is itself a security decision as much as a data structure decision, since how a system manages its keys is often the difference between an encryption scheme that protects data and one that only looks like it does. Across all of this, the constant has been treating security not as a feature bolted on at the end, but as a question asked at every design decision.
+
+### How the Artifacts Fit Together
+
+The three enhanced artifacts linked below were chosen because, together, they cover the three pillars this capstone asks every student to demonstrate, without asking me to invent work that was not genuinely mine. Travlr Getaways demonstrates software design and engineering at the application layer. The encryption and decryption project, rebuilt around a benchmarked, hash-based `KeyStore`, demonstrates algorithms and data structures. The rescue-dog dashboard, hardened with indexing, aggregation, and schema validation, demonstrates databases. A security mindset connects all three: secure key management in the encryption project, data integrity enforcement in the database layer, and the same adversarial, detail-oriented review process behind the code review video linked below. Read together, these artifacts are meant to show not only what I am capable of building, but how I now think about the systems I build: as things that have to work, scale, and hold up to scrutiny before I would put my name on them professionally.
+
+---
+
+## Portfolio Artifacts
+
+- [Software Design and Engineering — Travlr Getaways (CS 465)](travlr-getaways.html)
+- [Algorithms and Data Structures — Encryption/Decryption KeyStore (CS 405)](encryption-keystore.html)
+- [Databases — Rescue-Dog Dashboard (CS 340)](rescue-dog-dashboard.html)
+
+## Code Review
+
+[Watch the code review walkthrough](#) <!-- replace # with your YouTube link -->
