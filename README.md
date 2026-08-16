@@ -36,7 +36,7 @@ My CS 499 enhancement focused entirely on the database layer, inside the `Animal
 
 ### Secure Coding Encryption Project (CS 405)
 
-**Repository:** [CS_450_Secure_Coding](https://github.com/Ssjbankai12/CS_450_Secure_Coding) · **Category:** Algorithms and Data Structures · **Full narrative:** [encryption-keystore.md](encryption-keystore.md)
+**Repository:** [CS_405_Secure_Coding](https://github.com/Ssjbankai12/CS_405_Secure_Coding) · **Category:** Algorithms and Data Structures · **Full narrative:** [encryption-keystore.md](encryption-keystore.md)
 
 A C++ encryption/decryption program originally built for CS 405: Secure Coding, applying a repeating-key XOR transformation to encrypt and decrypt a text file and confirm the round trip. The original version relied on a single hardcoded key with no key management logic at all.
 
