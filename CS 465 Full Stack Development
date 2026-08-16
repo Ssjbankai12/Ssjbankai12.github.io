@@ -57,3 +57,5 @@ The main technical challenge was mocking Mongoose correctly. My first attempt at
 I also chose **not** to unit test the login route directly, since it delegates authentication to Passport's middleware — better suited to integration testing than isolated unit testing. Instead, I focused test coverage on the parts of the authentication flow I could cleanly extract into the service layer: input validation and registration.
 
 Overall, this enhancement gave me practical experience with a refactor pattern — separating concerns into a service layer — that I expect to reuse in future backend work.
+
+- [Travlr Getaways – Full Stack MEAN Application (CS 465)](https://github.com/Ssjbankai12/cs465-fullstack)
