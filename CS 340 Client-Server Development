@@ -1,0 +1,50 @@
+# Databases — Rescue-Dog Dashboard
+
+**Original course:** CS 340, Client-Server Development
+**Enhanced for:** CS 499, Computer Science Capstone
+**Repository:** [CS-340-Client-Server-Development](https://github.com/Ssjbankai12/CS-340-Client-Server-Development)
+
+---
+
+## Description of the Artifact
+
+This artifact is a rescue-dog dashboard originally built for CS 340: Client-Server Development. It consists of:
+
+- A **Python CRUD module** (`CRUD_Python_Module.py`) that connects to a MongoDB database containing Austin Animal Center shelter outcome records
+- A **Dash application** (`ProjectTwoDashboard.ipynb`) that presents an interactive dashboard on top of it
+
+The dashboard lets a user filter animals by rescue type (water rescue, mountain/wilderness rescue, or disaster and individual tracking), view the matching records in a sortable, filterable table, see a breed-distribution pie chart, and see the currently selected animal's location on a map.
+
+## Justification for Inclusion
+
+I selected this artifact for the Databases category because it is centered on how data is stored, queried, and retrieved, rather than on the application layer around it. The specific component that best showcases my database skills is the `AnimalShelter` class in the CRUD module — the sole point of contact between the Dash application and MongoDB. Every enhancement in this milestone lives inside that class rather than in the dashboard's presentation code.
+
+### What I built
+
+I improved the artifact in three ways, all inside the `AnimalShelter` class:
+
+1. **`create_indexes()`** — builds a compound index on `breed`, `sex_upon_outcome`, and `age_upon_outcome_in_weeks`, the exact three fields every rescue-type filter query in the dashboard already queries on. Without this index, each filtered query forces MongoDB to scan every document in the collection; with it, MongoDB can locate matching documents directly.
+
+2. **`get_breed_outcome_stats()`** — runs an aggregation pipeline grouping records by breed and computing, for each breed, a count, an average age at outcome, and an adoption rate. I wired this into a new panel on the dashboard: a bar chart of adoption rate by breed that updates alongside the existing table, pie chart, and map whenever a rescue type is selected. This answers a question the original dashboard couldn't — not just which breeds match a given rescue type, but which of those breeds are being adopted.
+
+3. **`apply_schema_validation()`** — applies a MongoDB `$jsonSchema` validator to the animals collection, requiring the fields the dashboard depends on (`breed`, `sex_upon_outcome`, `age_upon_outcome_in_weeks`, `outcome_type`, `location_lat`, `location_long`) to be present and correctly typed, so malformed data is rejected by the database itself rather than only by application-level assumptions.
+
+## Course Outcomes Coverage
+
+In the Module One enhancement plan, I identified this enhancement as an opportunity to demonstrate Course Outcomes 3, 4, and 5. I met all three as planned:
+
+| Outcome | How it was addressed |
+|---|---|
+| **Outcome 3** | Evaluated the dashboard's existing query patterns and designed an index that matches how the data is actually queried, rather than indexing arbitrarily. |
+| **Outcome 4** | The aggregation pipeline itself — an innovative technique beyond the original coursework requirements — computes analytics derived inside the database rather than after the fact in the client. |
+| **Outcome 5** | The schema validator enforces data integrity constraints at the database layer, preventing malformed or incomplete records from being accepted in the first place. |
+
+## Reflection on the Enhancement Process
+
+This enhancement gave me a clearer sense of the difference between a database enhancement and an application enhancement. All three pieces of this milestone — the index, the aggregation pipeline, and the schema validator — live entirely inside the database layer and the CRUD module that talks to it. The dashboard's presentation code only needed a small, additive change to display the new analytics panel; none of its existing filtering, table, or map behavior had to change.
+
+The main challenge was verifying correctness without a live MongoDB server available to me while developing. I addressed this by installing **mongomock**, an in-memory MongoDB emulator, and writing a small automated test suite against it. I built a fixed sample dataset with hand-calculated expected results, ran `create_indexes()` and `get_breed_outcome_stats()` against that dataset, and asserted the returned counts, averages, and adoption rates matched what I'd calculated by hand. All four tests passed, giving me real confidence in the aggregation pipeline's correctness before ever running it against the actual Austin Animal Center collection.
+
+> **A limitation I documented rather than hid:** the schema validator was the one piece I couldn't verify the same way, since mongomock does not enforce `collMod` validators. Rather than presenting the validator as tested when it wasn't, I documented that limitation directly.
+
+I also learned to factor the rescue-type query-building logic — previously duplicated only in the table-update callback — into a single shared function, since the new analytics callback needed to filter on the exact same criteria. Duplicating that logic a second time would have let the two panels drift out of sync if the query criteria ever changed.
