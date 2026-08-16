@@ -48,3 +48,5 @@ The main challenge was verifying correctness without a live MongoDB server avail
 > **A limitation I documented rather than hid:** the schema validator was the one piece I couldn't verify the same way, since mongomock does not enforce `collMod` validators. Rather than presenting the validator as tested when it wasn't, I documented that limitation directly.
 
 I also learned to factor the rescue-type query-building logic — previously duplicated only in the table-update callback — into a single shared function, since the new analytics callback needed to filter on the exact same criteria. Duplicating that logic a second time would have let the two panels drift out of sync if the query criteria ever changed.
+
+- [Rescue-Dog Dashboard – Client-Server Development (CS 340)](https://github.com/Ssjbankai12/CS-340-Client-Server-Development)
